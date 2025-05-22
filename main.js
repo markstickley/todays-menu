@@ -3,23 +3,28 @@ const fs = require('fs');
 // Read menu data
 const data = JSON.parse(fs.readFileSync('./data/menu.json', 'utf8'));
 
-// Get current date and time
 const now = new Date();
-
-// If it's after 12:00pm, switch to tomorrow
 let targetDate = new Date(now);
-if (now.getHours() >= 12) {
+
+// Check if today is Saturday (6) or Sunday (0)
+const todayDay = now.getDay();
+if (todayDay === 6 || todayDay === 0) {
+    // Force to next Monday
+    const daysToMonday = (8 - todayDay) % 7;
+    targetDate.setDate(targetDate.getDate() + daysToMonday);
+} else if (now.getHours() >= 12) {
+    // On weekdays, after 12pm, show tomorrow's meal
     targetDate.setDate(targetDate.getDate() + 1);
 }
 
-// Get ISO-formatted date string
+// Format date string
 const pad = (n) => n.toString().padStart(2, "0");
 const targetDateStr = `${targetDate.getFullYear()}-${pad(targetDate.getMonth() + 1)}-${pad(targetDate.getDate())}`;
 
-// Calculate weekday index (Monday = 0, Friday = 4)
+// Weekday index for menu lookup (0 = Monday, 4 = Friday)
 const weekday = (targetDate.getDay() + 6) % 7;
 
-// Find the current week based on date ranges
+// Find the matching menu week
 const matchedWeek = data.weeks.find((week) => {
   return week.datesCommencing.some((dateStr) => {
     const weekDate = new Date(dateStr);
@@ -35,7 +40,7 @@ if (!matchedWeek) {
 
 const dayInfo = matchedWeek.days[weekday.toString()];
 if (!dayInfo) {
-  updateMergeVariables({ error: "No meal info for today." });
+  updateMergeVariables({ error: "No meal info for this day." });
   return;
 }
 
@@ -56,7 +61,6 @@ const requestBody = {
 
 updateMergeVariables(requestBody);
 
-// ⬇️ Declare this function after it's used
 function updateMergeVariables(mergeVariables) {
   const apiKey = process.env.TRMNL_API_KEY;
   const title = process.env.PLUGIN_TITLE;
@@ -73,9 +77,7 @@ function updateMergeVariables(mergeVariables) {
   };
 
   fetch(url, options)
-    .then(() => {
-      process.exit(0);
-    })
+    .then(() => process.exit(0))
     .catch((error) => {
       console.error("Error updating merge variables:", error);
       process.exit(1);
