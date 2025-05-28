@@ -1,2 +1,2 @@
-1 0 * * * node /app/main.js >> /var/log/menucron.log 2>&1
-1 12 * * * node /app/main.js >> /var/log/menucron.log 2>&1
+1 0 * * * node /app/main.js >> /app/log/menucron.log 2>&1
+1 12 * * * node /app/main.js >> /app/log/menucron.log 2>&1
