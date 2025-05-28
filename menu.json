@@ -1,0 +1,184 @@
+{
+    "weeks": [
+        {
+            "id": 1,
+            "title": "Week 1",
+            "datesCommencing": [
+                "2025-04-21",
+                "2025-05-12",
+                "2025-06-09",
+                "2025-06-30",
+                "2025-07-21",
+                "2025-09-15",
+                "2025-10-06"
+            ],
+            "days": {
+                "0": {
+                    "options": [
+                        "Cheese and Tomato Pizza with Potato Tots",
+                        "Butternut Squash Mac & Cheese",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Chocolate Cookie"
+                },
+                "1": {
+                    "options": [
+                        "Chicken and Five Veg Meatballs in Tomato Sauce with Couscous",
+                        "Veggie Meatballs in Tomato Sauce with Couscous",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Apple Sponge with Custard"
+                },
+                "2": {
+                    "options": [
+                        "Roast Chicken with Roast Potatoes and Gravy",
+                        "Roasted Vegetable Parcel with Roast Potatoes and Gravy",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables & fresh bread",
+                    "dessert": "Peaches with Vanilla Yoghurt"
+                },
+                "3": {
+                    "options": [
+                        "Beef Pasta Bolognese",
+                        "Vegan Pasta Bolognese",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Fresh Dairy Yoghurt"
+                },
+                "4": {
+                    "options": [
+                        "Fish Fingers with Oven Chips",
+                        "Cheese and Tomato Swirl with Oven Chips",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables & fresh bread",
+                    "dessert": "Vanilla Ice Cream"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "title": "Week 2",
+            "datesCommencing": [
+                "2025-04-28",
+                "2025-05-19",
+                "2025-06-16",
+                "2025-07-07",
+                "2025-09-01",
+                "2025-09-22",
+                "2025-10-13"
+            ],
+            "days": {
+                "0": {
+                    "options": [
+                        "Cheese and Tomato Pasta Bake",
+                        "Veggie Sausage and Tomato Roll with Potato Tots",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Shortbread Biscuit with Fresh Fruit Slices"
+                },
+                "1": {
+                    "options": [
+                        "Chicken Burger with Potato Tots",
+                        "Southern Style Quorn Burger with Potato Tots",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "???"
+                },
+                "2": {
+                    "options": [
+                        "Roast Chicken with Roast Potatoes and Gravy",
+                        "Glamorgan Sausage with Roast Potatoes and Gravy",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables & fresh bread",
+                    "dessert": "Vanilla Sponge with Custard"
+                },
+                "3": {
+                    "options": [
+                        "Creamy Chicken and Sweetcorn with Rice",
+                        "Veggie Burrito",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Fruit Jelly"
+                },
+                "4": {
+                    "options": [
+                        "Harry Ramsden's Fish with Oven Chips",
+                        "Vegetable Fingers with Oven Chips",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables & fresh bread",
+                    "dessert": "Frozen Yoghurt with Mango"
+                }
+            }
+        },
+        {
+            "id": 3,
+            "title": "Week 3",
+            "datesCommencing": [
+                "2025-05-05",
+                "2025-06-02",
+                "2025-06-23",
+                "2025-07-14",
+                "2025-09-08",
+                "2025-09-29",
+                "2025-10-20"
+            ],
+            "days": {
+                "0": {
+                    "options": [
+                        "Veggie Feast Pizza with Potato Tots",
+                        "Mediterranean Vegetable Pasta",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Lemon Shortbread"
+                },
+                "1": {
+                    "options": [
+                        "Pork Sausages with Creamed Potatoes and Gravy",
+                        "Quorn Sausages with Creamed Potatoes and Gravy",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Pear Sponge with Custard"
+                },
+                "2": {
+                    "options": [
+                        "Roast Chicken with Roast Potatoes and Gravy",
+                        "Vegan Sausage Cutlet with Roast Potatoes and Gravy",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables & fresh bread",
+                    "dessert": "Fresh Dairy Yoghurt"
+                },
+                "3": {
+                    "options": [
+                        "Chicken Katsu Curry with Rice",
+                        "Southern Style Quorn Katsu Curry with Rice",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables, salad bar & fresh bread",
+                    "dessert": "Fresh Fruit Salad with Vanilla Yoghurt"
+                },
+                "4": {
+                    "options": [
+                        "Fish Fingers with Oven Chips",
+                        "Veggie Dippers with Oven Chips",
+                        "Jacket Potato"
+                    ],
+                    "sides": "Seasonal vegetables & fresh bread",
+                    "dessert": "Raspberry Ripple Ice Cream Roll"
+                }
+            }
+        }
+    ]
+}
