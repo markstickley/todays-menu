@@ -49,6 +49,7 @@ const sides = dayInfo.sides;
 const dessert = dayInfo.dessert;
 
 const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][targetDate.getDay()];
+const weekNumber = matchedWeek.id.toString();
 
 const requestBody = {
   options: dayInfo.options,
@@ -56,16 +57,17 @@ const requestBody = {
   dessert,
   weekTitle: matchedWeek.title,
   weekDay,
+  subtitle: `Week ${weekNumber}, ${weekDay}`,
   error: ""
 };
 
 updateMergeVariables(requestBody);
 
 function updateMergeVariables(mergeVariables) {
-  const apiKey = process.env.TRMNL_API_KEY;
+  const pluginUUID = process.env.TRMNL_PLUGIN_UUID;
   const title = process.env.PLUGIN_TITLE;
-  const subtitle = process.env.PLUGIN_SUBTITLE;
-  const url = `https://usetrmnl.com/api/custom_plugins/${apiKey}`;
+  const subtitle = process.env.PLUGIN_SUBTITLE || mergeVariables.subtitle || '';
+  const url = `https://usetrmnl.com/api/custom_plugins/${pluginUUID}`;
   const options = {
     method: "POST",
     headers: {
