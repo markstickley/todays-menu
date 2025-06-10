@@ -6,9 +6,11 @@ WORKDIR /app
 
 COPY main.js .
 COPY entrypoint.sh .
+COPY cron.sh .
 COPY crontab /etc/cron.d/menucron
 
 RUN chmod +x entrypoint.sh \
+    && chmod +x cron.sh \
     && chmod 0644 /etc/cron.d/menucron \
     && crontab /etc/cron.d/menucron
 
