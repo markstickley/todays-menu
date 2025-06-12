@@ -53,13 +53,13 @@ const matchedWeek = data.weeks.find((week) => {
 
 if (!matchedWeek) {
   updateMergeVariables({ error: "No menu found for this week." });
-  return;
+  process.exit(0);
 }
 
 const dayInfo = matchedWeek.days[weekday.toString()];
 if (!dayInfo) {
   updateMergeVariables({ error: "No meal info for this day." });
-  return;
+  process.exit(0);
 }
 
 const sides = dayInfo.sides;
@@ -98,8 +98,14 @@ function updateMergeVariables(mergeVariables) {
   };
 
   fetch(url, options)
-    .then(() => process.exit(0))
-    .catch((error) => {
+    .then(response => {
+      if (!response.ok) {
+        logError("Failed to update merge variables:", response.statusText);
+        process.exit(1);
+      }
+      process.exit(0);
+    })
+    .catch(error => {
       logError("Error updating merge variables:", error);
       process.exit(1);
     });
