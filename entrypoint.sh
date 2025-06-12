@@ -4,7 +4,7 @@
 cron
 
 # Run script once on container start
-node /app/main.js
+INVOKER=entrypoint node /app/main.js >> /app/log/todaysmenu.log 2>&1
 
 # Keep container running
 tail -f /dev/null

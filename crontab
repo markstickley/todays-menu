@@ -1,3 +1,3 @@
 SHELL=/bin/sh
-1 0 * * * /bin/sh -c '/app/cron.sh' >> /app/log/menucron.log 2>&1
-1 12 * * * /bin/sh -c '/app/cron.sh' >> /app/log/menucron.log 2>&1
+1 0 * * * /bin/sh -c 'INVOKER=cron /app/cron.sh' >> /app/log/todaysmenu.log 2>&1
+1 12 * * * /bin/sh -c 'INVOKER=cron /app/cron.sh' >> /app/log/todaysmenu.log 2>&1

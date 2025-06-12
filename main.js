@@ -1,7 +1,25 @@
 const fs = require('fs');
 
+// Check required environment variables are set
+const requiredEnvVars = [
+  'TRMNL_PLUGIN_UUID',
+  'PLUGIN_TITLE',
+  'INVOKER'
+];
+requiredEnvVars.forEach((envVar) => {
+  if (!process.env[envVar]) {
+    logError(`Environment variable ${envVar} is not set`);
+    process.exit(1);
+  }
+});
+
 // Read menu data
 const data = JSON.parse(fs.readFileSync('./data/menu.json', 'utf8'));
+
+if (!data || !data.weeks || data.weeks.length === 0) {
+  logError("No menu data found");
+  process.exit(1);
+}
 
 const now = new Date();
 let targetDate = new Date(now);
@@ -62,7 +80,7 @@ const requestBody = {
 
 updateMergeVariables(requestBody);
 
-console.log(now, ': merge variables updated for', targetDate);
+logInfo('merge variables updated for', targetDate);
 
 function updateMergeVariables(mergeVariables) {
   const pluginUUID = process.env.TRMNL_PLUGIN_UUID;
@@ -82,7 +100,19 @@ function updateMergeVariables(mergeVariables) {
   fetch(url, options)
     .then(() => process.exit(0))
     .catch((error) => {
-      console.error("Error updating merge variables:", error);
+      logError("Error updating merge variables:", error);
       process.exit(1);
     });
+}
+
+function logError(message, ...args) {
+  console.error(formatLogMessage(message), ...args);
+}
+
+function logInfo(message, ...args) {
+  console.log(formatLogMessage(message), ...args);
+}
+
+function formatLogMessage(message) {
+  return `[${new Date().toISOString()}][${process.env.INVOKER}]: ${message}`;
 }
