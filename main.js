@@ -44,7 +44,6 @@ if (!dayInfo) {
   return;
 }
 
-const options = dayInfo.options.map(opt => `- ${opt}`).join("\n");
 const sides = dayInfo.sides;
 const dessert = dayInfo.dessert;
 
