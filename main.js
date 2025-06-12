@@ -62,7 +62,7 @@ const requestBody = {
 
 updateMergeVariables(requestBody);
 
-console.log(now, 'merge variables updated');
+console.log(now, ': merge variables updated for', targetDate);
 
 function updateMergeVariables(mergeVariables) {
   const pluginUUID = process.env.TRMNL_PLUGIN_UUID;
