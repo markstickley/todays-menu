@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Export environment variables for cron jobs
+printenv | grep -v "no_proxy" > /etc/environment
+
 # Run cron in background
 cron
 
