@@ -23,5 +23,8 @@ fi
 # Run script once on container start
 INVOKER=entrypoint node /app/main.js >> "$LOG_FILE" 2>&1
 
+# Rotate log file
+sh /app/logrotate.sh
+
 # Keep container running
 tail -f /dev/null
