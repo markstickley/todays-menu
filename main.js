@@ -1,5 +1,15 @@
 const fs = require('fs');
 
+/**
+ * Requirements:
+ * - Read and parse a JSON file containing weekly meal data.
+ * - Select the day's meal based on the current date.
+ * - After 12pm on Monday–Thursday, show the next day's meal.
+ * - After 12pm on Friday, and all day Saturday and Sunday, show Monday's meal for the next week (if available).
+ * - Update merge variables for a terminal plugin with the selected meal data.
+ * - Handle errors gracefully and log messages with timestamps.
+ */
+
 // Check required environment variables are set
 const requiredEnvVars = [
   'TRMNL_PLUGIN_UUID',
@@ -30,14 +40,18 @@ if (!data || !data.weeks || !Array.isArray(data.weeks) || data.weeks.length === 
 const now = new Date();
 let targetDate = new Date(now);
 
-// Check if today is Saturday (6) or Sunday (0)
+// If after 12pm on Friday or any time on Saturday/Sunday, show next Monday's meal
 const todayDay = now.getDay();
-if (todayDay === 6 || todayDay === 0) {
-    // Force to next Monday
+if (
+  (todayDay === 5 && now.getHours() >= 12) || // Friday after 12pm
+  todayDay === 6 || // Saturday
+  todayDay === 0    // Sunday
+) {
+    // Advance to next Monday
     const daysToMonday = (8 - todayDay) % 7;
     targetDate.setDate(targetDate.getDate() + daysToMonday);
 } else if (now.getHours() >= 12) {
-    // On weekdays, after 12pm, show tomorrow's meal
+    // On other weekdays after 12pm, show tomorrow's meal
     targetDate.setDate(targetDate.getDate() + 1);
 }
 
