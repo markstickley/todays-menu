@@ -11,8 +11,8 @@ Requirements
 - Data source
     - The script looks for /app/data/menu.json
     - It is recommended you mount an external volume onto /app/data so that you can update menu.json without having to rebuild the container
-- API key
-    - The plugin's API key must be supplied to the container as an environment variable `TRMNL_API_KEY`
+- Plugin UUID
+    - The plugin's UUID must be supplied to the container as an environment variable `TRMNL_PLUGIN_UUID`
 - Title
     - The plugin's title must be supplied to the container as an environment variable `PLUGIN_TITLE`
 - Date
