@@ -1,2 +1,2 @@
-1 0 * * * . /etc/environment; INVOKER=cron /app/cron.sh >> /app/log/todaysmenu.log 2>&1
-1 12 * * * . /etc/environment; INVOKER=cron /app/cron.sh >> /app/log/todaysmenu.log 2>&1
+1 0 * * * . /etc/profile.d/envvars.sh; INVOKER=cron /app/cron.sh >> /app/log/todaysmenu.log 2>&1
+1 12 * * * . /etc/profile.d/envvars.sh; INVOKER=cron /app/cron.sh >> /app/log/todaysmenu.log 2>&1

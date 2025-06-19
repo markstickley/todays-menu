@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Export environment variables for cron jobs
-printenv | grep -v "no_proxy" > /etc/environment
+# Export environment variables for cron jobs in a shell-compatible way
+printenv | grep -v "no_proxy" | awk -F= '{gsub("'\"'", "\\\"", $2); print "export "$1"=\""$2"\""}' > /etc/profile.d/envvars.sh
 
 # Run cron in background
 cron
