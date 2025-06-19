@@ -14,10 +14,16 @@ requiredEnvVars.forEach((envVar) => {
 });
 
 // Read menu data
-const data = JSON.parse(fs.readFileSync('./data/menu.json', 'utf8'));
+let data;
+try {
+  data = JSON.parse(fs.readFileSync('./data/menu.json', 'utf8'));
+} catch (err) {
+  logError(`Failed to read or parse menu.json: ${err.message}`);
+  process.exit(1);
+}
 
-if (!data || !data.weeks || data.weeks.length === 0) {
-  logError("No menu data found");
+if (!data || !data.weeks || !Array.isArray(data.weeks) || data.weeks.length === 0) {
+  logError("No menu data found, or menu data file uses wrong format");
   process.exit(1);
 }
 
