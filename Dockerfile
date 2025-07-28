@@ -7,6 +7,7 @@ WORKDIR /app
 COPY main.js .
 COPY entrypoint.sh .
 COPY cron.sh .
+COPY logrotate.sh .
 COPY crontab /etc/cron.d/menucron
 
 RUN chmod +x entrypoint.sh \
