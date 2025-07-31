@@ -74,6 +74,8 @@ const matchedWeek = data.weeks.find((week) => {
 if (!matchedWeek) {
   updateMergeVariables({ error: "No menu found for this week." });
   process.exit(0);
+} else {
+  logInfo(`Matched week "${matchedWeek.title}"`, targetDate);
 }
 
 const dayInfo = matchedWeek.days[weekday.toString()];

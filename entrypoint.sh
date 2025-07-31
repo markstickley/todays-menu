@@ -14,9 +14,9 @@ cron
 
 # Check if cron started successfully
 if pgrep cron > /dev/null; then
-  echo "Cron started successfully." >> "$LOG_FILE"
+  echo $(date) "Cron started successfully." >> "$LOG_FILE"
 else
-  echo "Cron failed to start!" >> "$LOG_FILE"
+  echo $(date) "Cron failed to start!" >> "$LOG_FILE"
   exit 1
 fi
 
