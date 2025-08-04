@@ -1,3 +1,4 @@
+const { log } = require('console');
 const fs = require('fs');
 
 /**
@@ -9,6 +10,8 @@ const fs = require('fs');
  * - Update merge variables for a terminal plugin with the selected meal data.
  * - Handle errors gracefully and log messages with timestamps.
  */
+
+logInfo("Starting meal selection process...");
 
 // Check required environment variables are set
 const requiredEnvVars = [
@@ -82,6 +85,8 @@ const dayInfo = matchedWeek.days[weekday.toString()];
 if (!dayInfo) {
   updateMergeVariables({ error: "No meal info for this day." });
   process.exit(0);
+} else {
+  logInfo(`Matched day "${weekday.toString()}"`);
 }
 
 const sides = dayInfo.sides;
