@@ -109,13 +109,14 @@ function updateMergeVariables(mergeVariables) {
   const title = process.env.PLUGIN_TITLE;
   const subtitle = process.env.PLUGIN_SUBTITLE || mergeVariables.subtitle || '';
   const url = `https://usetrmnl.com/api/custom_plugins/${pluginUUID}`;
+  const updated = new Date().toISOString();
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      merge_variables: { ...mergeVariables, title, subtitle }
+      merge_variables: { ...mergeVariables, title, subtitle, updated }
     })
   };
 
