@@ -125,7 +125,7 @@ function updateMergeVariables(mergeVariables) {
     })
   };
 
-  logInfo("Updating merge variables:", JSON.stringify(merge_variables));
+  logInfo("Updating merge variables:", JSON.stringify(options.body));
 
   fetch(url, options)
     .then(response => {
