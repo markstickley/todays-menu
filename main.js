@@ -1,4 +1,3 @@
-const { log } = require('console');
 const fs = require('fs');
 
 /**
@@ -58,56 +57,48 @@ if (
     targetDate.setDate(targetDate.getDate() + 1);
 }
 
-// Format date string
-const pad = (n) => n.toString().padStart(2, "0");
-const targetDateStr = `${targetDate.getFullYear()}-${pad(targetDate.getMonth() + 1)}-${pad(targetDate.getDate())}`;
-
 // Weekday index for menu lookup (0 = Monday, 4 = Friday)
 const weekday = (targetDate.getDay() + 6) % 7;
 
 // Find the matching menu week
 const matchedWeek = data.weeks.find((week) => {
   return week.datesCommencing.some((dateStr) => {
-    const weekDate = new Date(dateStr);
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const weekDate = new Date(y, m - 1, d); // local midnight, avoids UTC parse offset
     const diff = targetDate - weekDate;
     return diff >= 0 && diff < 7 * 24 * 60 * 60 * 1000;
   });
 });
 
 if (!matchedWeek) {
-  updateMergeVariables({ error: "No menu found for this week." });
-  process.exit(0);
+  updateMergeVariables({ error: "No menu found for this week.", weekTitle: "", weekDay: "" });
 } else {
   logInfo(`Matched week "${matchedWeek.title}"`, targetDate);
+
+  const dayInfo = matchedWeek.days[weekday.toString()];
+  if (!dayInfo) {
+    updateMergeVariables({ error: "No meal info for this day.", weekTitle: "", weekDay: "" });
+  } else {
+    logInfo(`Matched day "${weekday.toString()}"`);
+
+    const sides = dayInfo.sides;
+    const dessert = dayInfo.dessert;
+    const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][targetDate.getDay()];
+    const weekNumber = matchedWeek.id.toString();
+
+    updateMergeVariables({
+      options: dayInfo.options,
+      sides,
+      dessert,
+      weekTitle: matchedWeek.title,
+      weekDay,
+      subtitle: `Week ${weekNumber}, ${weekDay}`,
+      error: ""
+    });
+
+    logInfo('merge variables updated for', targetDate);
+  }
 }
-
-const dayInfo = matchedWeek.days[weekday.toString()];
-if (!dayInfo) {
-  updateMergeVariables({ error: "No meal info for this day." });
-  process.exit(0);
-} else {
-  logInfo(`Matched day "${weekday.toString()}"`);
-}
-
-const sides = dayInfo.sides;
-const dessert = dayInfo.dessert;
-
-const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][targetDate.getDay()];
-const weekNumber = matchedWeek.id.toString();
-
-const requestBody = {
-  options: dayInfo.options,
-  sides,
-  dessert,
-  weekTitle: matchedWeek.title,
-  weekDay,
-  subtitle: `Week ${weekNumber}, ${weekDay}`,
-  error: ""
-};
-
-updateMergeVariables(requestBody);
-
-logInfo('merge variables updated for', targetDate);
 
 function updateMergeVariables(mergeVariables) {
   const pluginUUID = process.env.TRMNL_PLUGIN_UUID;
